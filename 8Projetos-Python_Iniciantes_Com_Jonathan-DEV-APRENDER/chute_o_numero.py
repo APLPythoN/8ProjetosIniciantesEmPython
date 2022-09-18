@@ -1,5 +1,5 @@
 # Projeto 3 - Chute o núMemoryError
-# Objetivo: Criar um algoritmo que gera u mvalor aleatório e eu tenho que ficar tentando o número até acertar.
+# Objetivo: Criar um algoritmo que gera um valor aleatório e nós usuários temos que ficar enviando números até acertar e no final informará quantas tentativas foram.
 
 import random
 
@@ -10,6 +10,7 @@ class ChuteONumero:
     self.valor_minimo = 1
     self.valor_maximo = 100
     self.tentar_novamente = True
+    self.palpites = 0
 
   
   def Iniciar(self):
@@ -20,12 +21,14 @@ class ChuteONumero:
           if int(self.valor_do_chute) > self.valor_aleatorio:
             print('Chute um valor mais baixo! ')
             self.PedirValorAleatorio()
+            self.palpites += 1
           elif int(self.valor_do_chute) < self.valor_aleatorio:
             print('Chute um valor mais alto! ')
             self.PedirValorAleatorio()
+            self.palpites += 1
           if int(self.valor_do_chute) == self.valor_aleatorio:
             self.tentar_novamente = False
-            print('PARABÉNS! VOCÊ ACERTOU!')
+            print(f'PARABÉNS! VOCÊ ACERTOU COM {self.palpites} TENTATIVAS !')
       except:
         print('Favor Digitar apenas números!  ')
         self.Iniciar()
